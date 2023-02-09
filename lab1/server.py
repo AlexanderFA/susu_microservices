@@ -28,6 +28,7 @@ def handle_client(conn, addr):
     while True:
         client_msg = conn.recv(1024).decode("utf-8")
         if client_msg == "\\exit":
+            conn.send(bytes(f"{user_name} left chat!", "utf-8"))
             conn.close()
             break
         client_msg = bytes("User {} wrote: {}".format(user_name, client_msg), "utf-8")
