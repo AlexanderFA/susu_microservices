@@ -49,6 +49,11 @@ def handle_client(conn, addr):
             conn.close()
             send_to_all(bytes(f"{user_name} has left the chat!", "utf-8"))
             break
+        if client_msg == "\\list":
+            client_names = [client['name'] for client in clients.values()]
+            client_names_str = ", ".join(client_names)
+            conn.send(bytes(f"User list:\n{client_names_str}", "utf-8"))
+            continue
 
         send_to_all(bytes("\033[1;32m{}\033[0m: {}".format(user_name, client_msg), "utf-8"))
 
