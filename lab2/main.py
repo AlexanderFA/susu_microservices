@@ -6,7 +6,7 @@ message = '''d = {
     'PackageID' : 1539,
     'PersonID' : 33,
     'Name' : "MEGA_GAMER_2222",
-    'Inventory': dict((str(i),i) for i in range(100)),
+    'Inventory': dict(("i" + str(i),i) for i in range(100)),
     'CurrentLocation': """
         Pentos is a large port city, more populous than Astapor on Slaver Bay,
         and may be one of the most populous of the Free Cities.
@@ -22,14 +22,16 @@ message = '''d = {
 
 setup_pickle = '%s ; import pickle ; src = pickle.dumps(d)' % message
 setup_json = '%s ; import json; src = json.dumps(d)' % message
+setup_xml = '%s ; import xmltodict; src = xmltodict.unparse({"root": d})' % message
 
 tests = [
     # (title, setup, enc_test, dec_test)
     ('native', setup_pickle, 'src = pickle.dumps(d)', 'pickle.loads(src)'),
-    ('json', setup_json, 'json.dumps(d)', 'json.loads(src)'),
+    ('json', setup_json, 'src = json.dumps(d)', 'json.loads(src)'),
+    ('xml', setup_xml, 'src = xmltodict.unparse({"root": d})', 'xmltodict.parse(src)'),
 ]
 
-loops = 5000
+loops = 100
 enc_table, dec_table = [], []
 
 print('Running tests (%d loops each)' % loops)
