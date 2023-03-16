@@ -1,12 +1,14 @@
 from tabulate import tabulate
 import timeit
 import sys
+# protoc --python_out=. lab2/my_message.proto чтобы скомпилировать протобаф файл
+from setup_protobuf import setup_protobuf
 
 message = '''d = {
     'PackageID' : 1539,
     'PersonID' : 33,
     'Name' : "MEGA_GAMER_2222",
-    'Inventory': dict(("i" + str(i),i) for i in range(100)),
+    'Inventory': dict(("i" + str(i),i) for i in range(30)),
     'CurrentLocation': """
         Pentos is a large port city, more populous than Astapor on Slaver Bay,
         and may be one of the most populous of the Free Cities.
@@ -23,15 +25,17 @@ message = '''d = {
 setup_pickle = '%s ; import pickle ; src = pickle.dumps(d)' % message
 setup_json = '%s ; import json; src = json.dumps(d)' % message
 setup_xml = '%s ; import xmltodict; src = xmltodict.unparse({"root": d})' % message
+print(setup_protobuf)
 
 tests = [
     # (title, setup, enc_test, dec_test)
     ('native', setup_pickle, 'src = pickle.dumps(d)', 'pickle.loads(src)'),
     ('json', setup_json, 'src = json.dumps(d)', 'json.loads(src)'),
     ('xml', setup_xml, 'src = xmltodict.unparse({"root": d})', 'xmltodict.parse(src)'),
+    ('protobuf', setup_protobuf, 'src = my_message.SerializeToString()', 'my_message_pb2.MyMessage.FromString(src)'),
 ]
 
-loops = 100
+loops = 1
 enc_table, dec_table = [], []
 
 print('Running tests (%d loops each)' % loops)
@@ -41,6 +45,7 @@ for title, mod, enc, dec in tests:
     print(" [Encode]", enc)
     result = timeit.timeit(stmt=enc, setup=mod, number=loops)
     exec(mod)
+    # print(src)
     enc_table.append([title, result, sys.getsizeof(src)])
 
     print(" [Decode]", dec)

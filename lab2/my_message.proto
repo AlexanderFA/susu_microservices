@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+message Inventory {
+  int32 i0 = 1;
+  int32 i1 = 2;
+  int32 i2 = 3;
+  int32 i3 = 4;
+  int32 i4 = 5;
+  int32 i5 = 6;
+  int32 i6 = 7;
+  int32 i7 = 8;
+  int32 i8 = 9;
+  int32 i9 = 10;
+  int32 i10 = 11;
+  int32 i11 = 12;
+  int32 i12 = 13;
+  int32 i13 = 14;
+  int32 i14 = 15;
+  int32 i15 = 16;
+  int32 i16 = 17;
+  int32 i17 = 18;
+  int32 i18 = 19;
+  int32 i19 = 20;
+  int32 i20 = 21;
+  int32 i21 = 22;
+  int32 i22 = 23;
+  int32 i23 = 24;
+  int32 i24 = 25;
+  int32 i25 = 26;
+  int32 i26 = 27;
+  int32 i27 = 28;
+  int32 i28 = 29;
+  int32 i29 = 30;
+}
+
+message MyMessage {
+  int32 PackageID = 1;
+  int32 PersonID = 2;
+  string Name = 3;
+  Inventory Inventory = 4;
+  string CurrentLocation = 5;
+}
