@@ -29,6 +29,7 @@ setup_pickle = '%s ; import pickle ; src = pickle.dumps(d)' % message
 setup_json = '%s ; import json; src = json.dumps(d)' % message
 setup_xml = '%s ; import xmltodict; src = xmltodict.unparse({"root": d})' % message
 setup_yaml = '%s ; import yaml; src = yaml.dump(d)' % message
+setup_msgpack = '%s ; import msgpack; src = msgpack.packb(d)' % message
 
 
 tests = [
@@ -44,6 +45,7 @@ tests = [
         'src.seek(0); fastavro.schemaless_reader(src, schema)'
     ),
     ('yaml', setup_yaml, 'src = yaml.dump(d)', 'yaml.load(src, Loader=yaml.FullLoader)'),
+    ('msgpack', setup_msgpack, 'src = msgpack.packb(d)', 'msgpack.unpackb(src, raw=False)'),
 ]
 
 loops = 1000
