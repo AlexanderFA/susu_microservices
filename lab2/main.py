@@ -4,6 +4,7 @@ import sys
 # protoc --python_out=. lab2/my_message.proto чтобы скомпилировать протобаф файл
 from setup_protobuf import setup_protobuf
 from avro import setup_avro
+import yaml
 
 
 message = '''d = {
@@ -27,6 +28,7 @@ message = '''d = {
 setup_pickle = '%s ; import pickle ; src = pickle.dumps(d)' % message
 setup_json = '%s ; import json; src = json.dumps(d)' % message
 setup_xml = '%s ; import xmltodict; src = xmltodict.unparse({"root": d})' % message
+setup_yaml = '%s ; import yaml; src = yaml.dump(d)' % message
 
 
 tests = [
@@ -41,9 +43,10 @@ tests = [
         'src = serialize_avro(schema, d)',
         'src.seek(0); fastavro.schemaless_reader(src, schema)'
     ),
+    ('yaml', setup_yaml, 'src = yaml.dump(d)', 'yaml.load(src, Loader=yaml.FullLoader)'),
 ]
 
-loops = 5000
+loops = 1000
 enc_table, dec_table = [], []
 
 print('Running tests (%d loops each)' % loops)
