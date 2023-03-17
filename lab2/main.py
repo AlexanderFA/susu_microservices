@@ -3,6 +3,8 @@ import timeit
 import sys
 # protoc --python_out=. lab2/my_message.proto чтобы скомпилировать протобаф файл
 from setup_protobuf import setup_protobuf
+from avro import setup_avro
+
 
 message = '''d = {
     'PackageID' : 1539,
@@ -25,7 +27,7 @@ message = '''d = {
 setup_pickle = '%s ; import pickle ; src = pickle.dumps(d)' % message
 setup_json = '%s ; import json; src = json.dumps(d)' % message
 setup_xml = '%s ; import xmltodict; src = xmltodict.unparse({"root": d})' % message
-print(setup_protobuf)
+
 
 tests = [
     # (title, setup, enc_test, dec_test)
@@ -33,9 +35,15 @@ tests = [
     ('json', setup_json, 'src = json.dumps(d)', 'json.loads(src)'),
     ('xml', setup_xml, 'src = xmltodict.unparse({"root": d})', 'xmltodict.parse(src)'),
     ('protobuf', setup_protobuf, 'src = my_message.SerializeToString()', 'my_message_pb2.MyMessage.FromString(src)'),
+    (
+        'avro',
+        message + setup_avro,
+        'src = serialize_avro(schema, d)',
+        'src.seek(0); fastavro.schemaless_reader(src, schema)'
+    ),
 ]
 
-loops = 1
+loops = 5000
 enc_table, dec_table = [], []
 
 print('Running tests (%d loops each)' % loops)
@@ -45,7 +53,6 @@ for title, mod, enc, dec in tests:
     print(" [Encode]", enc)
     result = timeit.timeit(stmt=enc, setup=mod, number=loops)
     exec(mod)
-    # print(src)
     enc_table.append([title, result, sys.getsizeof(src)])
 
     print(" [Decode]", dec)
