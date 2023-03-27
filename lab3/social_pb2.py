@@ -19,29 +19,29 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0csocial.proto\x12\x06social\"(\n\x07Message\x12\x0f\n\x07user_id\x18\x01 \x01(\t\x12\x0c\n\x04text\x18\x02 \x01(\t\"\"\n\x0eMessageRequest\x12\x10\n\x08user_ids\x18\x01 \x03(\t2I\n\x06Social\x12?\n\x10GetMessageStream\x12\x16.social.MessageRequest\x1a\x0f.social.Message(\x01\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x0csocial.proto\x12\x06social\"3\n\x12PostMessageRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t\"&\n\x13PostMessageResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"%\n\x12GetMessagesRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\"<\n\x07Message\x12\x12\n\nmessage_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x0c\n\x04text\x18\x03 \x01(\t\"8\n\x13GetMessagesResponse\x12!\n\x08messages\x18\x01 \x03(\x0b\x32\x0f.social.Message2\xa3\x01\n\rSocialNetwork\x12H\n\x0bPostMessage\x12\x1a.social.PostMessageRequest\x1a\x1b.social.PostMessageResponse\"\x00\x12H\n\x0bGetMessages\x12\x1a.social.GetMessagesRequest\x1a\x1b.social.GetMessagesResponse\"\x00\x62\x06proto3'
 )
 
 
 
 
-_MESSAGE = _descriptor.Descriptor(
-  name='Message',
-  full_name='social.Message',
+_POSTMESSAGEREQUEST = _descriptor.Descriptor(
+  name='PostMessageRequest',
+  full_name='social.PostMessageRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='user_id', full_name='social.Message.user_id', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      name='user_id', full_name='social.PostMessageRequest.user_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='text', full_name='social.Message.text', index=1,
+      name='text', full_name='social.PostMessageRequest.text', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -60,21 +60,131 @@ _MESSAGE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=24,
-  serialized_end=64,
+  serialized_end=75,
 )
 
 
-_MESSAGEREQUEST = _descriptor.Descriptor(
-  name='MessageRequest',
-  full_name='social.MessageRequest',
+_POSTMESSAGERESPONSE = _descriptor.Descriptor(
+  name='PostMessageResponse',
+  full_name='social.PostMessageResponse',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='user_ids', full_name='social.MessageRequest.user_ids', index=0,
-      number=1, type=9, cpp_type=9, label=3,
+      name='success', full_name='social.PostMessageResponse.success', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=77,
+  serialized_end=115,
+)
+
+
+_GETMESSAGESREQUEST = _descriptor.Descriptor(
+  name='GetMessagesRequest',
+  full_name='social.GetMessagesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='social.GetMessagesRequest.user_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=117,
+  serialized_end=154,
+)
+
+
+_MESSAGE = _descriptor.Descriptor(
+  name='Message',
+  full_name='social.Message',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message_id', full_name='social.Message.message_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='social.Message.user_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='text', full_name='social.Message.text', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=156,
+  serialized_end=216,
+)
+
+
+_GETMESSAGESRESPONSE = _descriptor.Descriptor(
+  name='GetMessagesResponse',
+  full_name='social.GetMessagesResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='messages', full_name='social.GetMessagesResponse.messages', index=0,
+      number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -91,13 +201,38 @@ _MESSAGEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=66,
-  serialized_end=100,
+  serialized_start=218,
+  serialized_end=274,
 )
 
+_GETMESSAGESRESPONSE.fields_by_name['messages'].message_type = _MESSAGE
+DESCRIPTOR.message_types_by_name['PostMessageRequest'] = _POSTMESSAGEREQUEST
+DESCRIPTOR.message_types_by_name['PostMessageResponse'] = _POSTMESSAGERESPONSE
+DESCRIPTOR.message_types_by_name['GetMessagesRequest'] = _GETMESSAGESREQUEST
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
-DESCRIPTOR.message_types_by_name['MessageRequest'] = _MESSAGEREQUEST
+DESCRIPTOR.message_types_by_name['GetMessagesResponse'] = _GETMESSAGESRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+PostMessageRequest = _reflection.GeneratedProtocolMessageType('PostMessageRequest', (_message.Message,), {
+  'DESCRIPTOR' : _POSTMESSAGEREQUEST,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.PostMessageRequest)
+  })
+_sym_db.RegisterMessage(PostMessageRequest)
+
+PostMessageResponse = _reflection.GeneratedProtocolMessageType('PostMessageResponse', (_message.Message,), {
+  'DESCRIPTOR' : _POSTMESSAGERESPONSE,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.PostMessageResponse)
+  })
+_sym_db.RegisterMessage(PostMessageResponse)
+
+GetMessagesRequest = _reflection.GeneratedProtocolMessageType('GetMessagesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETMESSAGESREQUEST,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.GetMessagesRequest)
+  })
+_sym_db.RegisterMessage(GetMessagesRequest)
 
 Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,), {
   'DESCRIPTOR' : _MESSAGE,
@@ -106,38 +241,48 @@ Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,
   })
 _sym_db.RegisterMessage(Message)
 
-MessageRequest = _reflection.GeneratedProtocolMessageType('MessageRequest', (_message.Message,), {
-  'DESCRIPTOR' : _MESSAGEREQUEST,
+GetMessagesResponse = _reflection.GeneratedProtocolMessageType('GetMessagesResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETMESSAGESRESPONSE,
   '__module__' : 'social_pb2'
-  # @@protoc_insertion_point(class_scope:social.MessageRequest)
+  # @@protoc_insertion_point(class_scope:social.GetMessagesResponse)
   })
-_sym_db.RegisterMessage(MessageRequest)
+_sym_db.RegisterMessage(GetMessagesResponse)
 
 
 
-_SOCIAL = _descriptor.ServiceDescriptor(
-  name='Social',
-  full_name='social.Social',
+_SOCIALNETWORK = _descriptor.ServiceDescriptor(
+  name='SocialNetwork',
+  full_name='social.SocialNetwork',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=102,
-  serialized_end=175,
+  serialized_start=277,
+  serialized_end=440,
   methods=[
   _descriptor.MethodDescriptor(
-    name='GetMessageStream',
-    full_name='social.Social.GetMessageStream',
+    name='PostMessage',
+    full_name='social.SocialNetwork.PostMessage',
     index=0,
     containing_service=None,
-    input_type=_MESSAGEREQUEST,
-    output_type=_MESSAGE,
+    input_type=_POSTMESSAGEREQUEST,
+    output_type=_POSTMESSAGERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetMessages',
+    full_name='social.SocialNetwork.GetMessages',
+    index=1,
+    containing_service=None,
+    input_type=_GETMESSAGESREQUEST,
+    output_type=_GETMESSAGESRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_SOCIAL)
+_sym_db.RegisterServiceDescriptor(_SOCIALNETWORK)
 
-DESCRIPTOR.services_by_name['Social'] = _SOCIAL
+DESCRIPTOR.services_by_name['SocialNetwork'] = _SOCIALNETWORK
 
 # @@protoc_insertion_point(module_scope)

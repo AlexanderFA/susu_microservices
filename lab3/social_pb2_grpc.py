@@ -5,7 +5,7 @@ import grpc
 import social_pb2 as social__pb2
 
 
-class SocialStub(object):
+class SocialNetworkStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -14,42 +14,58 @@ class SocialStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetMessageStream = channel.stream_stream(
-                '/social.Social/GetMessageStream',
-                request_serializer=social__pb2.MessageRequest.SerializeToString,
-                response_deserializer=social__pb2.Message.FromString,
+        self.PostMessage = channel.unary_unary(
+                '/social.SocialNetwork/PostMessage',
+                request_serializer=social__pb2.PostMessageRequest.SerializeToString,
+                response_deserializer=social__pb2.PostMessageResponse.FromString,
+                )
+        self.GetMessages = channel.unary_unary(
+                '/social.SocialNetwork/GetMessages',
+                request_serializer=social__pb2.GetMessagesRequest.SerializeToString,
+                response_deserializer=social__pb2.GetMessagesResponse.FromString,
                 )
 
 
-class SocialServicer(object):
+class SocialNetworkServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def GetMessageStream(self, request_iterator, context):
+    def PostMessage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetMessages(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_SocialServicer_to_server(servicer, server):
+def add_SocialNetworkServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetMessageStream': grpc.stream_stream_rpc_method_handler(
-                    servicer.GetMessageStream,
-                    request_deserializer=social__pb2.MessageRequest.FromString,
-                    response_serializer=social__pb2.Message.SerializeToString,
+            'PostMessage': grpc.unary_unary_rpc_method_handler(
+                    servicer.PostMessage,
+                    request_deserializer=social__pb2.PostMessageRequest.FromString,
+                    response_serializer=social__pb2.PostMessageResponse.SerializeToString,
+            ),
+            'GetMessages': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMessages,
+                    request_deserializer=social__pb2.GetMessagesRequest.FromString,
+                    response_serializer=social__pb2.GetMessagesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'social.Social', rpc_method_handlers)
+            'social.SocialNetwork', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class Social(object):
+class SocialNetwork(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def GetMessageStream(request_iterator,
+    def PostMessage(request,
             target,
             options=(),
             channel_credentials=None,
@@ -59,8 +75,25 @@ class Social(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_stream(request_iterator, target, '/social.Social/GetMessageStream',
-            social__pb2.MessageRequest.SerializeToString,
-            social__pb2.Message.FromString,
+        return grpc.experimental.unary_unary(request, target, '/social.SocialNetwork/PostMessage',
+            social__pb2.PostMessageRequest.SerializeToString,
+            social__pb2.PostMessageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetMessages(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/social.SocialNetwork/GetMessages',
+            social__pb2.GetMessagesRequest.SerializeToString,
+            social__pb2.GetMessagesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
