@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package social;
+
+message Message {
+  string user_id = 1;
+  string text = 2;
+}
+
+message MessageRequest {
+  repeated string user_ids = 1;
+}
+
+service Social {
+  rpc GetMessageStream(stream MessageRequest) returns (stream Message);
+}
+
