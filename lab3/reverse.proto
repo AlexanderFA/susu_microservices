@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package reverse;
+
+service ReverseService {
+ rpc ReverseString (ReverseRequest) returns (ReverseResponse) {}
+}
+
+message ReverseRequest {
+ string text = 1;
+}
+
+message ReverseResponse {
+ string reversed_text = 1;
+}
