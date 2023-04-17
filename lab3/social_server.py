@@ -11,6 +11,7 @@ class SocialNetworkServicer(social_pb2_grpc.SocialNetworkServicer):
     def __init__(self):
         self.messages = []
         self.message_id = 1
+        self.comment_id = 1
         self.comments = []
         self.likes = []
 
@@ -19,12 +20,12 @@ class SocialNetworkServicer(social_pb2_grpc.SocialNetworkServicer):
         message.message_id = self.message_id
         message.user_id = user_id
         message.text = text
+        self.message_id += 1
         return message
 
     def PostMessage(self, request, context):
         message = self.create_message(request.user_id, request.text)
         self.messages.append(message)
-        self.message_id += 1
         return social_pb2.PostMessageResponse(message_id=message.message_id)
 
     def GetMessages(self, request, context):
@@ -48,82 +49,28 @@ class SocialNetworkServicer(social_pb2_grpc.SocialNetworkServicer):
 
         return response
 
-    # def CreateUser(self, request, context):
-    #     user_id = request.user_id
-    #     if user_id in self.users:
-    #         context.set_details(f"User {user_id} already exists")
-    #         context.set_code(grpc.StatusCode.ALREADY_EXISTS)
-    #         return social_pb2.CreateUserResponse(success=False)
-    #     self.users[user_id] = request.name
-    #     return social_pb2.CreateUserResponse(success=True)
-    #
-    # def CreatePost(self, request, context):
-    #     post_id = len(self.posts) + 1
-    #     user_id = request.user_id
-    #     if user_id not in self.users:
-    #         context.set_details(f"User {user_id} does not exist")
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         return social_pb2.CreatePostResponse(success=False)
-    #     post = social_pb2.Post(id=post_id, user_id=user_id, text=request.text)
-    #     self.posts[post_id] = post
-    #     return social_pb2.CreatePostResponse(success=True, post_id=post_id)
-    #
-    # def GetPosts(self, request, context):
-    #     user_id = request.user_id
-    #     if user_id not in self.users:
-    #         context.set_details(f"User {user_id} does not exist")
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         return social_pb2.GetPostsResponse(success=False)
-    #     user_posts = [post for post in self.posts.values() if post.user_id == user_id]
-    #     return social_pb2.GetPostsResponse(success=True, posts=user_posts)
-    #
-    # def GetPost(self, request, context):
-    #     post_id = request.post_id
-    #     if post_id not in self.posts:
-    #         context.set_details(f"Post {post_id} does not exist")
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         return social_pb2.GetPostResponse(success=False)
-    #     post = self.posts[post_id]
-    #     return social_pb2.GetPostResponse(success=True, post=post)
-    #
-    # def CreateComment(self, request, context):
-    #     comment_id = len(self.comments) + 1
-    #     user_id = request.user_id
-    #     post_id = request.post_id
-    #     if user_id not in self.users:
-    #         context.set_details(f"User {user_id} does not exist")
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         return social_pb2.CreateCommentResponse(success=False)
-    #     if post_id not in self.posts:
-    #         context.set_details(f"Post {post_id} does not exist")
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         return social_pb2.CreateCommentResponse(success=False)
-    #     comment = social_pb2.Comment(
-    #         id=comment_id,
-    #         user_id=user_id,
-    #         post_id=post_id,
-    #         text=request.text,
-    #     )
-    #     self.comments[comment_id] = comment
-    #     return social_pb2.CreateCommentResponse(success=True, comment_id=comment_id)
-    #
-    # def GetComments(self, request, context):
-    #     post_id = request.post_id
-    #     if post_id not in self.posts:
-    #         context.set_details(f"Post {post_id} does not exist")
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         return social_pb2.GetPostResponse(success=False)
-    #     post = self.posts[post_id]
-    #     return social_pb2.GetPostResponse(success=True, post=post)
-    #
-    #     post = self.posts.get(request.post_id)
-    #     if not post:
-    #         context.set_code(grpc.StatusCode.NOT_FOUND)
-    #         context.set_details('Post not found')
-    #         return social_network_pb2.CommentsResponse()
-    #
-    #     comments = post.comments
-    #     return social_network_pb2.CommentsResponse(comments=comments)
+    def create_comment(self, user_id, text):
+        comment = social_pb2.Comment()
+        comment.comment_id = self.comment_id
+        comment.user_id = user_id
+        comment.text = text
+        self.comment_id += 1
+        return comment
+
+    def AddComment(self, request, context):
+        response = social_pb2.AddCommentResponse()
+        comment = self.create_comment(request.user_id, request.text)
+
+        message_id = request.message_id
+        try:
+            message_ind = message_id - 1
+            self.messages[message_ind].comments.append(comment)
+            print(self.messages[message_ind].comments)
+        except IndexError:
+            print("No such message.")
+
+        return social_pb2.AddCommentResponse(comment_id=comment.comment_id)
+
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))

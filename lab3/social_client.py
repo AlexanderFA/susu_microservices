@@ -17,7 +17,7 @@ def get_messages(stub, user_id):
     response = stub.GetMessages(get_messages_request)
     print("Get messages response:")
     for message in response.messages:
-        print(f"Message ID: {message.message_id}\nUser ID: {message.user_id}\nText: {message.text}\nLikes: {message.likes}\n")
+        print(f"Message ID: {message.message_id}\nUser ID: {message.user_id}\nText: {message.text}\nLikes: {message.likes}\nComments: {message.comments}\n")
 
 
 def like_message(stub, message_id):
@@ -25,6 +25,15 @@ def like_message(stub, message_id):
     like_message_request.message_id = message_id
     like_message_response = stub.LikeMessage(like_message_request)
     print("Likes of this message:", like_message_response.likes)
+
+
+def comment_message(stub, message_id, text, user_id):
+    comment_message_request = social_pb2.AddCommentRequest()
+    comment_message_request.message_id = message_id
+    comment_message_request.text = text
+    comment_message_request.user_id = user_id
+    comment_message_response = stub.AddComment(comment_message_request)
+    print("Created message ID is:", comment_message_response.comment_id)
 
 
 def run():
@@ -43,6 +52,11 @@ def run():
         elif command == "like":
             message_id = int(input("Enter message ID: "))
             like_message(stub, message_id)
+        elif command == "comment":
+            message_id = int(input("Enter message ID: "))
+            text = input("Enter comment text: ")
+            user_id = int(input("Enter user_id: "))
+            comment_message(stub, message_id, text, user_id)
         elif command == "quit":
             break
         else:
