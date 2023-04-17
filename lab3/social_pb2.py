@@ -17,9 +17,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='social.proto',
   package='social',
   syntax='proto3',
-  serialized_options=None,
+  serialized_options=b'Z\017socialnetworkpb',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0csocial.proto\x12\x06social\"3\n\x12PostMessageRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t\"&\n\x13PostMessageResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\"%\n\x12GetMessagesRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\"<\n\x07Message\x12\x12\n\nmessage_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x0c\n\x04text\x18\x03 \x01(\t\"8\n\x13GetMessagesResponse\x12!\n\x08messages\x18\x01 \x03(\x0b\x32\x0f.social.Message2\xa3\x01\n\rSocialNetwork\x12H\n\x0bPostMessage\x12\x1a.social.PostMessageRequest\x1a\x1b.social.PostMessageResponse\"\x00\x12H\n\x0bGetMessages\x12\x1a.social.GetMessagesRequest\x1a\x1b.social.GetMessagesResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x0csocial.proto\x12\x06social\"3\n\x12PostMessageRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\x12\x0c\n\x04text\x18\x02 \x01(\t\")\n\x13PostMessageResponse\x12\x12\n\nmessage_id\x18\x01 \x01(\x05\"n\n\x07Message\x12\x12\n\nmessage_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x0c\n\x04text\x18\x03 \x01(\t\x12\r\n\x05likes\x18\x04 \x03(\t\x12!\n\x08\x63omments\x18\x05 \x03(\x0b\x32\x0f.social.Comment\"%\n\x12GetMessagesRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\x05\"8\n\x13GetMessagesResponse\x12!\n\x08messages\x18\x01 \x03(\x0b\x32\x0f.social.Message\"(\n\x12LikeMessageRequest\x12\x12\n\nmessage_id\x18\x01 \x01(\x05\"$\n\x13LikeMessageResponse\x12\r\n\x05likes\x18\x01 \x03(\t\"F\n\x11\x41\x64\x64\x43ommentRequest\x12\x12\n\nmessage_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x0c\n\x04text\x18\x03 \x01(\t\"(\n\x12\x41\x64\x64\x43ommentResponse\x12\x12\n\ncomment_id\x18\x01 \x01(\x05\"<\n\x07\x43omment\x12\x12\n\ncomment_id\x18\x01 \x01(\x05\x12\x0f\n\x07user_id\x18\x02 \x01(\x05\x12\x0c\n\x04text\x18\x03 \x01(\t2\xb4\x02\n\rSocialNetwork\x12H\n\x0bPostMessage\x12\x1a.social.PostMessageRequest\x1a\x1b.social.PostMessageResponse\"\x00\x12H\n\x0bGetMessages\x12\x1a.social.GetMessagesRequest\x1a\x1b.social.GetMessagesResponse\"\x00\x12H\n\x0bLikeMessage\x12\x1a.social.LikeMessageRequest\x1a\x1b.social.LikeMessageResponse\"\x00\x12\x45\n\nAddComment\x12\x19.social.AddCommentRequest\x1a\x1a.social.AddCommentResponse\"\x00\x42\x11Z\x0fsocialnetworkpbb\x06proto3'
 )
 
 
@@ -73,39 +73,7 @@ _POSTMESSAGERESPONSE = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='success', full_name='social.PostMessageResponse.success', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto3',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=77,
-  serialized_end=115,
-)
-
-
-_GETMESSAGESREQUEST = _descriptor.Descriptor(
-  name='GetMessagesRequest',
-  full_name='social.GetMessagesRequest',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='user_id', full_name='social.GetMessagesRequest.user_id', index=0,
+      name='message_id', full_name='social.PostMessageResponse.message_id', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
@@ -123,8 +91,8 @@ _GETMESSAGESREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=117,
-  serialized_end=154,
+  serialized_start=77,
+  serialized_end=118,
 )
 
 
@@ -157,6 +125,20 @@ _MESSAGE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='likes', full_name='social.Message.likes', index=3,
+      number=4, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='comments', full_name='social.Message.comments', index=4,
+      number=5, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -169,8 +151,40 @@ _MESSAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=156,
-  serialized_end=216,
+  serialized_start=120,
+  serialized_end=230,
+)
+
+
+_GETMESSAGESREQUEST = _descriptor.Descriptor(
+  name='GetMessagesRequest',
+  full_name='social.GetMessagesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='social.GetMessagesRequest.user_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=232,
+  serialized_end=269,
 )
 
 
@@ -201,16 +215,210 @@ _GETMESSAGESRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=218,
-  serialized_end=274,
+  serialized_start=271,
+  serialized_end=327,
 )
 
+
+_LIKEMESSAGEREQUEST = _descriptor.Descriptor(
+  name='LikeMessageRequest',
+  full_name='social.LikeMessageRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message_id', full_name='social.LikeMessageRequest.message_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=329,
+  serialized_end=369,
+)
+
+
+_LIKEMESSAGERESPONSE = _descriptor.Descriptor(
+  name='LikeMessageResponse',
+  full_name='social.LikeMessageResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='likes', full_name='social.LikeMessageResponse.likes', index=0,
+      number=1, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=371,
+  serialized_end=407,
+)
+
+
+_ADDCOMMENTREQUEST = _descriptor.Descriptor(
+  name='AddCommentRequest',
+  full_name='social.AddCommentRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message_id', full_name='social.AddCommentRequest.message_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='social.AddCommentRequest.user_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='text', full_name='social.AddCommentRequest.text', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=409,
+  serialized_end=479,
+)
+
+
+_ADDCOMMENTRESPONSE = _descriptor.Descriptor(
+  name='AddCommentResponse',
+  full_name='social.AddCommentResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='comment_id', full_name='social.AddCommentResponse.comment_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=481,
+  serialized_end=521,
+)
+
+
+_COMMENT = _descriptor.Descriptor(
+  name='Comment',
+  full_name='social.Comment',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='comment_id', full_name='social.Comment.comment_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='social.Comment.user_id', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='text', full_name='social.Comment.text', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=523,
+  serialized_end=583,
+)
+
+_MESSAGE.fields_by_name['comments'].message_type = _COMMENT
 _GETMESSAGESRESPONSE.fields_by_name['messages'].message_type = _MESSAGE
 DESCRIPTOR.message_types_by_name['PostMessageRequest'] = _POSTMESSAGEREQUEST
 DESCRIPTOR.message_types_by_name['PostMessageResponse'] = _POSTMESSAGERESPONSE
-DESCRIPTOR.message_types_by_name['GetMessagesRequest'] = _GETMESSAGESREQUEST
 DESCRIPTOR.message_types_by_name['Message'] = _MESSAGE
+DESCRIPTOR.message_types_by_name['GetMessagesRequest'] = _GETMESSAGESREQUEST
 DESCRIPTOR.message_types_by_name['GetMessagesResponse'] = _GETMESSAGESRESPONSE
+DESCRIPTOR.message_types_by_name['LikeMessageRequest'] = _LIKEMESSAGEREQUEST
+DESCRIPTOR.message_types_by_name['LikeMessageResponse'] = _LIKEMESSAGERESPONSE
+DESCRIPTOR.message_types_by_name['AddCommentRequest'] = _ADDCOMMENTREQUEST
+DESCRIPTOR.message_types_by_name['AddCommentResponse'] = _ADDCOMMENTRESPONSE
+DESCRIPTOR.message_types_by_name['Comment'] = _COMMENT
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 PostMessageRequest = _reflection.GeneratedProtocolMessageType('PostMessageRequest', (_message.Message,), {
@@ -227,19 +435,19 @@ PostMessageResponse = _reflection.GeneratedProtocolMessageType('PostMessageRespo
   })
 _sym_db.RegisterMessage(PostMessageResponse)
 
-GetMessagesRequest = _reflection.GeneratedProtocolMessageType('GetMessagesRequest', (_message.Message,), {
-  'DESCRIPTOR' : _GETMESSAGESREQUEST,
-  '__module__' : 'social_pb2'
-  # @@protoc_insertion_point(class_scope:social.GetMessagesRequest)
-  })
-_sym_db.RegisterMessage(GetMessagesRequest)
-
 Message = _reflection.GeneratedProtocolMessageType('Message', (_message.Message,), {
   'DESCRIPTOR' : _MESSAGE,
   '__module__' : 'social_pb2'
   # @@protoc_insertion_point(class_scope:social.Message)
   })
 _sym_db.RegisterMessage(Message)
+
+GetMessagesRequest = _reflection.GeneratedProtocolMessageType('GetMessagesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETMESSAGESREQUEST,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.GetMessagesRequest)
+  })
+_sym_db.RegisterMessage(GetMessagesRequest)
 
 GetMessagesResponse = _reflection.GeneratedProtocolMessageType('GetMessagesResponse', (_message.Message,), {
   'DESCRIPTOR' : _GETMESSAGESRESPONSE,
@@ -248,7 +456,43 @@ GetMessagesResponse = _reflection.GeneratedProtocolMessageType('GetMessagesRespo
   })
 _sym_db.RegisterMessage(GetMessagesResponse)
 
+LikeMessageRequest = _reflection.GeneratedProtocolMessageType('LikeMessageRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LIKEMESSAGEREQUEST,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.LikeMessageRequest)
+  })
+_sym_db.RegisterMessage(LikeMessageRequest)
 
+LikeMessageResponse = _reflection.GeneratedProtocolMessageType('LikeMessageResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LIKEMESSAGERESPONSE,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.LikeMessageResponse)
+  })
+_sym_db.RegisterMessage(LikeMessageResponse)
+
+AddCommentRequest = _reflection.GeneratedProtocolMessageType('AddCommentRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ADDCOMMENTREQUEST,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.AddCommentRequest)
+  })
+_sym_db.RegisterMessage(AddCommentRequest)
+
+AddCommentResponse = _reflection.GeneratedProtocolMessageType('AddCommentResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ADDCOMMENTRESPONSE,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.AddCommentResponse)
+  })
+_sym_db.RegisterMessage(AddCommentResponse)
+
+Comment = _reflection.GeneratedProtocolMessageType('Comment', (_message.Message,), {
+  'DESCRIPTOR' : _COMMENT,
+  '__module__' : 'social_pb2'
+  # @@protoc_insertion_point(class_scope:social.Comment)
+  })
+_sym_db.RegisterMessage(Comment)
+
+
+DESCRIPTOR._options = None
 
 _SOCIALNETWORK = _descriptor.ServiceDescriptor(
   name='SocialNetwork',
@@ -257,8 +501,8 @@ _SOCIALNETWORK = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=277,
-  serialized_end=440,
+  serialized_start=586,
+  serialized_end=894,
   methods=[
   _descriptor.MethodDescriptor(
     name='PostMessage',
@@ -277,6 +521,26 @@ _SOCIALNETWORK = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_GETMESSAGESREQUEST,
     output_type=_GETMESSAGESRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='LikeMessage',
+    full_name='social.SocialNetwork.LikeMessage',
+    index=2,
+    containing_service=None,
+    input_type=_LIKEMESSAGEREQUEST,
+    output_type=_LIKEMESSAGERESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='AddComment',
+    full_name='social.SocialNetwork.AddComment',
+    index=3,
+    containing_service=None,
+    input_type=_ADDCOMMENTREQUEST,
+    output_type=_ADDCOMMENTRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

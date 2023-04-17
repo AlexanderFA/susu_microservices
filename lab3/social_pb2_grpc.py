@@ -24,6 +24,16 @@ class SocialNetworkStub(object):
                 request_serializer=social__pb2.GetMessagesRequest.SerializeToString,
                 response_deserializer=social__pb2.GetMessagesResponse.FromString,
                 )
+        self.LikeMessage = channel.unary_unary(
+                '/social.SocialNetwork/LikeMessage',
+                request_serializer=social__pb2.LikeMessageRequest.SerializeToString,
+                response_deserializer=social__pb2.LikeMessageResponse.FromString,
+                )
+        self.AddComment = channel.unary_unary(
+                '/social.SocialNetwork/AddComment',
+                request_serializer=social__pb2.AddCommentRequest.SerializeToString,
+                response_deserializer=social__pb2.AddCommentResponse.FromString,
+                )
 
 
 class SocialNetworkServicer(object):
@@ -41,6 +51,18 @@ class SocialNetworkServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def LikeMessage(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def AddComment(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_SocialNetworkServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -53,6 +75,16 @@ def add_SocialNetworkServicer_to_server(servicer, server):
                     servicer.GetMessages,
                     request_deserializer=social__pb2.GetMessagesRequest.FromString,
                     response_serializer=social__pb2.GetMessagesResponse.SerializeToString,
+            ),
+            'LikeMessage': grpc.unary_unary_rpc_method_handler(
+                    servicer.LikeMessage,
+                    request_deserializer=social__pb2.LikeMessageRequest.FromString,
+                    response_serializer=social__pb2.LikeMessageResponse.SerializeToString,
+            ),
+            'AddComment': grpc.unary_unary_rpc_method_handler(
+                    servicer.AddComment,
+                    request_deserializer=social__pb2.AddCommentRequest.FromString,
+                    response_serializer=social__pb2.AddCommentResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -95,5 +127,39 @@ class SocialNetwork(object):
         return grpc.experimental.unary_unary(request, target, '/social.SocialNetwork/GetMessages',
             social__pb2.GetMessagesRequest.SerializeToString,
             social__pb2.GetMessagesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def LikeMessage(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/social.SocialNetwork/LikeMessage',
+            social__pb2.LikeMessageRequest.SerializeToString,
+            social__pb2.LikeMessageResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def AddComment(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/social.SocialNetwork/AddComment',
+            social__pb2.AddCommentRequest.SerializeToString,
+            social__pb2.AddCommentResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
