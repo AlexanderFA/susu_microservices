@@ -1,13 +1,13 @@
-Реализовать gRPC веб-сервис и клиента для него, которые бы обеспечивали функционирование социальной сети.
+Implement a gRPC web service and a client for it that would enable the social network.
 
-Сервис должен предоставлять API для просмотра ленты сообщений, в которую пользователи могут загружать сообщения из своих клиентов.
+The service should provide an API for viewing the message feed, to which users can upload posts from their clients.
 
-Другие клиенты могут «лайкать» чужие посты и оставлять к ним комментарии.
+Other clients can "like" other people's posts and comment on them.
 
 
-1. Реализовать и разместить локально простейший gRPC- сервис «Reverse» который принимает от клиента строку и возвращает ее в обратном порядке.
-2. Реализовать и разместить локально gRPC веб-сервис, и клиента для социальной сети обеспечивающий сбор и отображение ленты сообщений от пользователей.
-3. Сдача в срок: задачи 1-2 сданы до 26 апреля – 2 балла; до 9 мая– 1 балл; после 9 мая – 0 баллов.
-4. Реализовать и разместить локально gRPC веб-сервис, и клиента для социальной сети обеспечивающий возможность лайкать сообщения и оставлять комментарии к чужим постам.
-5. Разместить разработанный gRPC-сервис в облаке и 4 продемонстрировать его работу.
-6. \* Реализовать функционал прямой отправки текстовых сообщений от одного пользователя вашей социальной сети другому
+1. To implement and host locally a simple gRPC service "Reverse" which receives a string from a client and returns it in reverse order.
+2. To implement and place locally the gRPC web service and social networking client which provides collecting and displaying the feed of messages from users.
+3. On-time submission: tasks 1-2 submitted by April 26 - 2 points; by May 9 - 1 point; after May 9 - 0 points.
+4. To implement and place locally gRPC web-service, and a client for the social network providing an opportunity to like posts and leave comments to other people's posts.
+5. Place the developed gRPC service in the cloud and demonstrate its work.
+6. \* Implement the functionality of direct sending text messages from one user of your social network to another
