@@ -1,4 +1,3 @@
-from concurrent import futures
 import grpc
 import time
 import social_pb2
@@ -81,7 +80,7 @@ def serve():
     try:
         while True:
             # time.sleep(86400)
-            time.sleep(1)
+            time.sleep(2)
     except KeyboardInterrupt:
         server.stop(0)
 
